@@ -1,0 +1,116 @@
+[
+  {
+    "_id": "ai_676354789100000000000001",
+    "document_id": "bb0e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "analysis_type": "tax_compliance_check",
+    "ai_model": "ollama-llama3.2-3b",
+    "analysis_timestamp": "2025-11-19T10:30:00.000Z",
+    "input_data": {
+      "document_type": 33,
+      "folio_number": 1,
+      "total_amount": 2500000.00,
+      "tax_amount": 399160.00,
+      "net_amount": 2100840.00,
+      "client_rut": "19001626-9",
+      "items_count": 1
+    },
+    "analysis_results": {
+      "tax_calculation_accuracy": 100,
+      "iva_verification": {
+        "calculated_iva": 399160.00,
+        "declared_iva": 399160.00,
+        "is_correct": true
+      },
+      "compliance_score": 95,
+      "detected_issues": [],
+      "recommendations": [
+        "Documento tributario cumple con normativas SII",
+        "Cálculos de IVA son correctos",
+        "Formato XML válido según esquema DTE v1.0"
+      ],
+      "risk_level": "low",
+      "suggested_actions": []
+    },
+    "processing_time_ms": 2450,
+    "confidence_level": 0.96,
+    "created_at": "2025-11-19T10:30:00.000Z",
+    "updated_at": "2025-11-19T10:30:00.000Z"
+  },
+  {
+    "_id": "ai_676354789100000000000002",
+    "document_id": "bb0e8400-e29b-41d4-a716-446655440002",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "analysis_type": "anomaly_detection",
+    "ai_model": "ollama-llama3.2-3b",
+    "analysis_timestamp": "2025-11-19T11:15:00.000Z",
+    "input_data": {
+      "document_type": 33,
+      "folio_number": 2,
+      "total_amount": 300000.00,
+      "tax_amount": 47899.00,
+      "net_amount": 252101.00,
+      "client_rut": "18519680-1",
+      "items_count": 1
+    },
+    "analysis_results": {
+      "tax_calculation_accuracy": 100,
+      "iva_verification": {
+        "calculated_iva": 47899.00,
+        "declared_iva": 47899.00,
+        "is_correct": true
+      },
+      "compliance_score": 98,
+      "detected_issues": [],
+      "recommendations": [
+        "Factura por servicios de consultoría correcta",
+        "Cumple estándares tributarios chilenos"
+      ],
+      "risk_level": "low",
+      "suggested_actions": []
+    },
+    "processing_time_ms": 1890,
+    "confidence_level": 0.98,
+    "created_at": "2025-11-19T11:15:00.000Z",
+    "updated_at": "2025-11-19T11:15:00.000Z"
+  },
+  {
+    "_id": "ai_676354789100000000000003",
+    "document_id": "bb0e8400-e29b-41d4-a716-446655440003",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "analysis_type": "pattern_analysis",
+    "ai_model": "ollama-llama3.2-3b",
+    "analysis_timestamp": "2025-11-19T14:22:00.000Z",
+    "input_data": {
+      "document_type": 33,
+      "folio_number": 3,
+      "total_amount": 85000.00,
+      "tax_amount": 13571.00,
+      "net_amount": 71429.00,
+      "client_rut": "16256598-2",
+      "items_count": 1
+    },
+    "analysis_results": {
+      "tax_calculation_accuracy": 100,
+      "iva_verification": {
+        "calculated_iva": 13571.00,
+        "declared_iva": 13571.00,
+        "is_correct": true
+      },
+      "compliance_score": 92,
+      "detected_issues": [],
+      "recommendations": [
+        "Factura de servicios recurrentes - patrón normal",
+        "Considerar automatizar facturas mensuales similares"
+      ],
+      "risk_level": "low",
+      "suggested_actions": [
+        "setup_recurring_billing"
+      ]
+    },
+    "processing_time_ms": 2100,
+    "confidence_level": 0.94,
+    "created_at": "2025-11-19T14:22:00.000Z",
+    "updated_at": "2025-11-19T14:22:00.000Z"
+  }
+]

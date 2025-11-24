@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+  Esquema XSD simplificado para DTE v1.0 - SII Chile
+  Tipos de documentos: 33, 34, 46, 52, 56, 61
+  
+  IMPORTANTE: En producción, descargar esquemas oficiales desde:
+  https://www.sii.cl/factura_electronica/factura_mercado/esquemas.htm
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://www.sii.cl/SiiDte" 
+           xmlns="http://www.sii.cl/SiiDte"
+           elementFormDefault="qualified">
+
+  <!-- Elemento raíz DTE -->
+  <xs:element name="DTE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Documento" type="DocumentoType"/>
+        <xs:element name="Signature" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Tipo Documento -->
+  <xs:complexType name="DocumentoType">
+    <xs:sequence>
+      <xs:element name="Encabezado" type="EncabezadoType"/>
+      <xs:element name="Detalle" type="DetalleType" maxOccurs="unbounded"/>
+      <xs:element name="Referencia" type="ReferenciaType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="TED" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Tipo Encabezado -->
+  <xs:complexType name="EncabezadoType">
+    <xs:sequence>
+      <xs:element name="IdDoc" type="IdDocType"/>
+      <xs:element name="Emisor" type="EmisorType"/>
+      <xs:element name="Receptor" type="ReceptorType"/>
+      <xs:element name="Totales" type="TotalesType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo IdDoc -->
+  <xs:complexType name="IdDocType">
+    <xs:sequence>
+      <xs:element name="TipoDTE">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="33"/> <!-- Factura Electrónica -->
+            <xs:enumeration value="34"/> <!-- Factura No Afecta -->
+            <xs:enumeration value="46"/> <!-- Factura de Compra -->
+            <xs:enumeration value="52"/> <!-- Guía de Despacho -->
+            <xs:enumeration value="56"/> <!-- Nota de Débito -->
+            <xs:enumeration value="61"/> <!-- Nota de Crédito -->
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Folio" type="xs:long"/>
+      <xs:element name="FchEmis" type="xs:date"/>
+      <xs:element name="FmaPago" type="xs:int" minOccurs="0"/>
+      <xs:element name="FchVenc" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Emisor -->
+  <xs:complexType name="EmisorType">
+    <xs:sequence>
+      <xs:element name="RUTEmisor" type="RUTType"/>
+      <xs:element name="RznSoc" type="xs:string"/>
+      <xs:element name="GiroEmis" type="xs:string"/>
+      <xs:element name="DirOrigen" type="xs:string"/>
+      <xs:element name="CmnaOrigen" type="xs:string"/>
+      <xs:element name="CiudadOrigen" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Receptor -->
+  <xs:complexType name="ReceptorType">
+    <xs:sequence>
+      <xs:element name="RUTRecep" type="RUTType"/>
+      <xs:element name="RznSocRecep" type="xs:string"/>
+      <xs:element name="GiroRecep" type="xs:string" minOccurs="0"/>
+      <xs:element name="DirRecep" type="xs:string"/>
+      <xs:element name="CmnaRecep" type="xs:string"/>
+      <xs:element name="CiudadRecep" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Totales -->
+  <xs:complexType name="TotalesType">
+    <xs:sequence>
+      <xs:element name="MntNeto" type="xs:long" minOccurs="0"/>
+      <xs:element name="MntExe" type="xs:long" minOccurs="0"/>
+      <xs:element name="IVA" type="xs:long" minOccurs="0"/>
+      <xs:element name="MntTotal" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Detalle -->
+  <xs:complexType name="DetalleType">
+    <xs:sequence>
+      <xs:element name="NroLinDet" type="xs:int"/>
+      <xs:element name="NmbItem" type="xs:string"/>
+      <xs:element name="QtyItem" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="PrcItem" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="MontoItem" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Referencia -->
+  <xs:complexType name="ReferenciaType">
+    <xs:sequence>
+      <xs:element name="NroLinRef" type="xs:int"/>
+      <xs:element name="TpoDocRef" type="xs:int"/>
+      <xs:element name="FolioRef" type="xs:string"/>
+      <xs:element name="FchRef" type="xs:date" minOccurs="0"/>
+      <xs:element name="CodRef" type="xs:int" minOccurs="0"/>
+      <xs:element name="RazonRef" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo RUT -->
+  <xs:simpleType name="RUTType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{1,8}-[0-9Kk]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

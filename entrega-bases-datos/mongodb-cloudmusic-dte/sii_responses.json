@@ -1,0 +1,238 @@
+[
+  {
+    "_id": "sii_676354789100000000000001",
+    "track_id": "TRK-2025-001-CloudMusic",
+    "document_id": "bb0e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "company_rut": "78218659-0",
+    "document_type": 33,
+    "folio_number": 1,
+    "submission_timestamp": "2025-11-19T10:33:00.000Z",
+    "sii_environment": "certificacion",
+    "submission_method": "web_service",
+    "request_data": {
+      "soap_action": "EnvioDTE",
+      "envelope_size_bytes": 18950,
+      "documents_count": 1,
+      "batch_id": "batch_2025_11_19_001",
+      "request_headers": {
+        "SOAPAction": "http://www.sii.cl/SiiDte/EnvioDTE",
+        "Content-Type": "text/xml; charset=utf-8",
+        "User-Agent": "CloudMusic-DTE/2.5.3"
+      }
+    },
+    "sii_responses": [
+      {
+        "response_sequence": 1,
+        "timestamp": "2025-11-19T10:33:05.000Z",
+        "response_type": "acknowledgment",
+        "http_status": 200,
+        "sii_status": "RECIBIDO",
+        "response_code": "0",
+        "response_message": "Envio Recibido Correctamente",
+        "processing_time_ms": 4800,
+        "response_headers": {
+          "Content-Type": "text/xml; charset=UTF-8",
+          "Server": "SII-WebServices/1.0"
+        },
+        "response_body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns1:RespuestaDTE xmlns:ns1=\"http://www.sii.cl/SiiDte\"><ns1:Resultado><ns1:Estado>0</ns1:Estado><ns1:Mensaje>Envio Recibido Correctamente</ns1:Mensaje><ns1:TrackID>TRK-2025-001-CloudMusic</ns1:TrackID></ns1:Resultado></ns1:RespuestaDTE></soap:Body></soap:Envelope>",
+        "parsed_response": {
+          "estado": "0",
+          "mensaje": "Envio Recibido Correctamente",
+          "track_id": "TRK-2025-001-CloudMusic"
+        }
+      },
+      {
+        "response_sequence": 2,
+        "timestamp": "2025-11-19T10:38:00.000Z",
+        "response_type": "validation_result",
+        "http_status": 200,
+        "sii_status": "ACEPTADO",
+        "response_code": "0",
+        "response_message": "DTE Aceptado por SII",
+        "processing_time_ms": 3200,
+        "response_body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><RespuestaEstadoDTE><EstadoDTE><Folio>1</Folio><TipoDTE>33</TipoDTE><RutEmisor>78218659-0</RutEmisor><Estado>ACEPTADO</Estado><FechaRecepcion>2025-11-19T10:38:00</FechaRecepcion></EstadoDTE></RespuestaEstadoDTE>",
+        "parsed_response": {
+          "folio": 1,
+          "tipo_dte": 33,
+          "rut_emisor": "78218659-0",
+          "estado": "ACEPTADO",
+          "fecha_recepcion": "2025-11-19T10:38:00"
+        }
+      }
+    ],
+    "current_status": "ACEPTADO",
+    "status_history": [
+      {
+        "status": "ENVIADO",
+        "timestamp": "2025-11-19T10:33:00.000Z",
+        "description": "Documento enviado al SII"
+      },
+      {
+        "status": "RECIBIDO", 
+        "timestamp": "2025-11-19T10:33:05.000Z",
+        "description": "SII confirma recepción del DTE"
+      },
+      {
+        "status": "ACEPTADO",
+        "timestamp": "2025-11-19T10:38:00.000Z",
+        "description": "DTE validado y aceptado por SII"
+      }
+    ],
+    "retry_history": [],
+    "error_details": null,
+    "metadata": {
+      "total_processing_time_ms": 300000,
+      "sii_validation_time_ms": 295200,
+      "network_latency_ms": 4800,
+      "xml_validation_passed": true,
+      "digital_signature_verified": true,
+      "schema_validation_passed": true
+    },
+    "created_at": "2025-11-19T10:33:00.000Z",
+    "updated_at": "2025-11-19T10:38:00.000Z"
+  },
+  {
+    "_id": "sii_676354789100000000000002",
+    "track_id": "TRK-2025-002-CloudMusic",
+    "document_id": "bb0e8400-e29b-41d4-a716-446655440002",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "company_rut": "78218659-0",
+    "document_type": 33,
+    "folio_number": 2,
+    "submission_timestamp": "2025-11-19T11:20:00.000Z",
+    "sii_environment": "certificacion",
+    "submission_method": "web_service",
+    "request_data": {
+      "soap_action": "EnvioDTE",
+      "envelope_size_bytes": 16450,
+      "documents_count": 1,
+      "batch_id": "batch_2025_11_19_002"
+    },
+    "sii_responses": [
+      {
+        "response_sequence": 1,
+        "timestamp": "2025-11-19T11:20:04.000Z",
+        "response_type": "acknowledgment",
+        "http_status": 200,
+        "sii_status": "RECIBIDO",
+        "response_code": "0",
+        "response_message": "Envio Recibido Correctamente",
+        "processing_time_ms": 4200,
+        "parsed_response": {
+          "estado": "0",
+          "mensaje": "Envio Recibido Correctamente", 
+          "track_id": "TRK-2025-002-CloudMusic"
+        }
+      },
+      {
+        "response_sequence": 2,
+        "timestamp": "2025-11-19T11:24:30.000Z",
+        "response_type": "validation_result",
+        "http_status": 200,
+        "sii_status": "ACEPTADO",
+        "response_code": "0",
+        "response_message": "DTE Aceptado por SII",
+        "processing_time_ms": 2800,
+        "parsed_response": {
+          "folio": 2,
+          "tipo_dte": 33,
+          "rut_emisor": "78218659-0",
+          "estado": "ACEPTADO",
+          "fecha_recepcion": "2025-11-19T11:24:30"
+        }
+      }
+    ],
+    "current_status": "ACEPTADO",
+    "status_history": [
+      {
+        "status": "ENVIADO",
+        "timestamp": "2025-11-19T11:20:00.000Z",
+        "description": "Documento enviado al SII"
+      },
+      {
+        "status": "RECIBIDO",
+        "timestamp": "2025-11-19T11:20:04.000Z", 
+        "description": "SII confirma recepción del DTE"
+      },
+      {
+        "status": "ACEPTADO",
+        "timestamp": "2025-11-19T11:24:30.000Z",
+        "description": "DTE validado y aceptado por SII"
+      }
+    ],
+    "retry_history": [],
+    "error_details": null,
+    "metadata": {
+      "total_processing_time_ms": 270000,
+      "sii_validation_time_ms": 266000,
+      "network_latency_ms": 4200,
+      "xml_validation_passed": true,
+      "digital_signature_verified": true,
+      "schema_validation_passed": true
+    },
+    "created_at": "2025-11-19T11:20:00.000Z",
+    "updated_at": "2025-11-19T11:24:30.000Z"
+  },
+  {
+    "_id": "sii_676354789100000000000003",
+    "track_id": "TRK-2025-003-CloudMusic",
+    "document_id": "bb0e8400-e29b-41d4-a716-446655440003",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "company_rut": "78218659-0",
+    "document_type": 33,
+    "folio_number": 3,
+    "submission_timestamp": "2025-11-19T14:25:00.000Z",
+    "sii_environment": "certificacion",
+    "submission_method": "web_service",
+    "request_data": {
+      "soap_action": "EnvioDTE",
+      "envelope_size_bytes": 15200,
+      "documents_count": 1,
+      "batch_id": "batch_2025_11_19_003"
+    },
+    "sii_responses": [
+      {
+        "response_sequence": 1,
+        "timestamp": "2025-11-19T14:25:06.000Z",
+        "response_type": "acknowledgment",
+        "http_status": 200,
+        "sii_status": "RECIBIDO",
+        "response_code": "0",
+        "response_message": "Envio Recibido Correctamente",
+        "processing_time_ms": 5500,
+        "parsed_response": {
+          "estado": "0",
+          "mensaje": "Envio Recibido Correctamente",
+          "track_id": "TRK-2025-003-CloudMusic"
+        }
+      }
+    ],
+    "current_status": "ENVIADO",
+    "status_history": [
+      {
+        "status": "ENVIADO",
+        "timestamp": "2025-11-19T14:25:00.000Z",
+        "description": "Documento enviado al SII"
+      },
+      {
+        "status": "RECIBIDO",
+        "timestamp": "2025-11-19T14:25:06.000Z",
+        "description": "SII confirma recepción del DTE"
+      }
+    ],
+    "retry_history": [],
+    "error_details": null,
+    "metadata": {
+      "total_processing_time_ms": 6000,
+      "sii_validation_time_ms": null,
+      "network_latency_ms": 5500,
+      "xml_validation_passed": true,
+      "digital_signature_verified": true,
+      "schema_validation_passed": true,
+      "pending_validation": true
+    },
+    "created_at": "2025-11-19T14:25:00.000Z",
+    "updated_at": "2025-11-19T14:25:06.000Z"
+  }
+]

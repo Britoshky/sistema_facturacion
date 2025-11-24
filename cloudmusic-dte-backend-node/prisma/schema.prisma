@@ -1,0 +1,254 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email        String        @unique @db.VarChar(255)
+  passwordHash String        @map("password_hash") @db.VarChar(255)
+  firstName    String        @map("first_name") @db.VarChar(100)
+  lastName     String        @map("last_name") @db.VarChar(150)
+  role         String        @default("user") @db.VarChar(50)
+  isActive     Boolean?      @default(true) @map("is_active")
+  lastLogin    DateTime?     @map("last_login") @db.Timestamp(6)
+  createdAt    DateTime?     @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt    DateTime?     @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  companyUsers CompanyUser[]
+  documents    Document[]
+
+  @@index([email], map: "idx_users_email")
+  @@index([role], map: "idx_users_role")
+  @@index([isActive], map: "idx_users_active")
+  @@map("users")
+}
+
+model Company {
+  id               String        @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  rut              String        @unique @db.VarChar(12)
+  businessName     String        @map("business_name") @db.VarChar(200)
+  commercialName   String?       @map("commercial_name") @db.VarChar(200)
+  economicActivity String        @map("economic_activity") @db.VarChar(200)
+  businessLine     String        @map("business_line") @db.VarChar(200)
+  address          String
+  commune          String        @db.VarChar(100)
+  city             String        @db.VarChar(100)
+  region           String        @db.VarChar(100)
+  postalCode       String?       @map("postal_code") @db.VarChar(10)
+  phone            String?       @db.VarChar(20)
+  email            String?       @db.VarChar(255)
+  website          String?       @db.VarChar(255)
+  logoUrl          String?       @map("logo_url") @db.VarChar(500)
+  taxRegime        String?       @default("general") @map("tax_regime") @db.VarChar(50)
+  siiActivityCode  String?       @map("sii_activity_code") @db.VarChar(10)
+  isActive         Boolean?      @default(true) @map("is_active")
+  createdAt        DateTime?     @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt        DateTime?     @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  certificates     Certificate[]
+  clients          Client[]
+  companyUsers     CompanyUser[]
+  documents        Document[]
+  folios           Folio[]
+  products         Product[]
+
+  @@index([rut], map: "idx_companies_rut")
+  @@index([isActive], map: "idx_companies_active")
+  @@map("companies")
+}
+
+model CompanyUser {
+  id            String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId        String    @map("user_id") @db.Uuid
+  companyId     String    @map("company_id") @db.Uuid
+  roleInCompany String    @default("user") @map("role_in_company") @db.VarChar(50)
+  permissions   Json?     @default("{}")
+  isActive      Boolean?  @default(true) @map("is_active")
+  joinedAt      DateTime? @default(now()) @map("joined_at") @db.Timestamp(6)
+  company       Company   @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([userId, companyId])
+  @@index([userId], map: "idx_company_users_user")
+  @@index([companyId], map: "idx_company_users_company")
+  @@map("company_users")
+}
+
+model Client {
+  id           String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  companyId    String     @map("company_id") @db.Uuid
+  rut          String     @db.VarChar(12)
+  clientType   String     @map("client_type") @db.VarChar(20)
+  businessName String?    @map("business_name") @db.VarChar(200)
+  firstName    String?    @map("first_name") @db.VarChar(100)
+  lastName     String?    @map("last_name") @db.VarChar(150)
+  businessLine String?    @map("business_line") @db.VarChar(200)
+  address      String?
+  commune      String?    @db.VarChar(100)
+  city         String?    @db.VarChar(100)
+  phone        String?    @db.VarChar(20)
+  email        String?    @db.VarChar(255)
+  creditLimit  Decimal?   @default(0) @map("credit_limit") @db.Decimal(15, 2)
+  paymentTerms Int?       @default(30) @map("payment_terms")
+  isActive     Boolean?   @default(true) @map("is_active")
+  createdAt    DateTime?  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt    DateTime?  @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  company      Company    @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  documents    Document[]
+
+  @@unique([companyId, rut])
+  @@index([companyId], map: "idx_clients_company")
+  @@index([rut], map: "idx_clients_rut")
+  @@index([clientType], map: "idx_clients_type")
+  @@map("clients")
+}
+
+model Product {
+  id                String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  companyId         String         @map("company_id") @db.Uuid
+  sku               String         @db.VarChar(100)
+  name              String         @db.VarChar(200)
+  description       String?
+  productType       String         @map("product_type") @db.VarChar(20)
+  unitPrice         Decimal        @default(0) @map("unit_price") @db.Decimal(15, 2)
+  costPrice         Decimal?       @default(0) @map("cost_price") @db.Decimal(15, 2)
+  unitOfMeasure     String?        @default("UNIDAD") @map("unit_of_measure") @db.VarChar(20)
+  taxClassification String?        @default("taxable") @map("tax_classification") @db.VarChar(20)
+  siiCode           String?        @map("sii_code") @db.VarChar(20)
+  stockQuantity     Int?           @default(0) @map("stock_quantity")
+  minStock          Int?           @default(0) @map("min_stock")
+  isActive          Boolean?       @default(true) @map("is_active")
+  createdAt         DateTime?      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt         DateTime?      @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  documentItems     DocumentItem[]
+  company           Company        @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([companyId, sku])
+  @@index([companyId], map: "idx_products_company")
+  @@index([sku], map: "idx_products_sku")
+  @@index([productType], map: "idx_products_type")
+  @@map("products")
+}
+
+model Certificate {
+  id              String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  companyId       String    @map("company_id") @db.Uuid
+  certificateName String    @map("certificate_name") @db.VarChar(200)
+  pfxFile         Bytes     @map("pfx_file")
+  passwordHash    String    @map("password_hash") @db.VarChar(255)
+  issuer          String    @db.VarChar(200)
+  subject         String    @db.VarChar(200)
+  serialNumber    String    @map("serial_number") @db.VarChar(100)
+  issuedDate      DateTime  @map("issued_date") @db.Date
+  expiryDate      DateTime  @map("expiry_date") @db.Date
+  fingerprint     String?   @db.VarChar(100)
+  isActive        Boolean?  @default(true) @map("is_active")
+  isDefault       Boolean?  @default(false) @map("is_default")
+  createdAt       DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt       DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  company         Company   @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([companyId], map: "idx_certificates_company")
+  @@index([isActive], map: "idx_certificates_active")
+  @@index([expiryDate], map: "idx_certificates_expiry")
+  @@map("certificates")
+}
+
+model Folio {
+  id                String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  companyId         String     @map("company_id") @db.Uuid
+  documentType      Int        @map("document_type")
+  cafFile           String     @map("caf_file")
+  fromFolio         Int        @map("from_folio")
+  toFolio           Int        @map("to_folio")
+  currentFolio      Int        @map("current_folio")
+  authorizationDate DateTime   @map("authorization_date") @db.Date
+  expiryDate        DateTime   @map("expiry_date") @db.Date
+  remaining_folios  Int?       @default(dbgenerated("((to_folio - current_folio) + 1)"))
+  isActive          Boolean?   @default(true) @map("is_active")
+  createdAt         DateTime?  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt         DateTime?  @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  documents         Document[]
+  company           Company    @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([companyId, documentType, fromFolio, toFolio])
+  @@index([companyId], map: "idx_folios_company")
+  @@index([documentType], map: "idx_folios_doc_type")
+  @@index([isActive], map: "idx_folios_active")
+  @@map("folios")
+}
+
+model Document {
+  id                  String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  companyId           String         @map("company_id") @db.Uuid
+  clientId            String?        @map("client_id") @db.Uuid
+  folioId             String         @map("folio_id") @db.Uuid
+  documentType        Int            @map("document_type")
+  folioNumber         Int            @map("folio_number")
+  issueDate           DateTime       @map("issue_date") @db.Date
+  dueDate             DateTime?      @map("due_date") @db.Date
+  referenceDocumentId String?        @map("reference_document_id") @db.Uuid
+  referenceType       Int?           @map("reference_type")
+  referenceReason     String?        @map("reference_reason") @db.VarChar(200)
+  netAmount           Decimal        @default(0) @map("net_amount") @db.Decimal(15, 2)
+  taxAmount           Decimal        @default(0) @map("tax_amount") @db.Decimal(15, 2)
+  exemptAmount        Decimal        @default(0) @map("exempt_amount") @db.Decimal(15, 2)
+  totalAmount         Decimal        @default(0) @map("total_amount") @db.Decimal(15, 2)
+  currency            String?        @default("CLP") @db.VarChar(3)
+  exchangeRate        Decimal?       @default(1.0000) @map("exchange_rate") @db.Decimal(10, 4)
+  siiStatus           String?        @default("draft") @map("sii_status") @db.VarChar(20)
+  trackId             String?        @map("track_id") @db.VarChar(100)
+  xmlContent          String?        @map("xml_content")
+  pdfUrl              String?        @map("pdf_url") @db.VarChar(500)
+  notes               String?
+  createdBy           String?        @map("created_by") @db.Uuid
+  createdAt           DateTime?      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt           DateTime?      @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  documentItems       DocumentItem[]
+  client              Client?        @relation(fields: [clientId], references: [id], onUpdate: NoAction)
+  company             Company        @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  creator             User?          @relation(fields: [createdBy], references: [id], onUpdate: NoAction)
+  folio               Folio          @relation(fields: [folioId], references: [id], onUpdate: NoAction)
+  referenceDocument   Document?      @relation("DocumentReference", fields: [referenceDocumentId], references: [id], onUpdate: NoAction)
+  referencedDocuments Document[]     @relation("DocumentReference")
+
+  @@unique([companyId, documentType, folioNumber])
+  @@index([companyId], map: "idx_documents_company")
+  @@index([clientId], map: "idx_documents_client")
+  @@index([folioNumber], map: "idx_documents_folio")
+  @@index([issueDate], map: "idx_documents_issue_date")
+  @@index([siiStatus], map: "idx_documents_status")
+  @@index([documentType], map: "idx_documents_type")
+  @@map("documents")
+}
+
+model DocumentItem {
+  id                 String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  documentId         String    @map("document_id") @db.Uuid
+  productId          String?   @map("product_id") @db.Uuid
+  lineNumber         Int       @map("line_number")
+  productCode        String?   @map("product_code") @db.VarChar(100)
+  productName        String    @map("product_name") @db.VarChar(200)
+  description        String?
+  quantity           Decimal   @default(1) @db.Decimal(10, 4)
+  unitPrice          Decimal   @map("unit_price") @db.Decimal(15, 2)
+  discountPercentage Decimal?  @default(0) @map("discount_percentage") @db.Decimal(5, 2)
+  discountAmount     Decimal?  @default(0) @map("discount_amount") @db.Decimal(15, 2)
+  netAmount          Decimal   @map("net_amount") @db.Decimal(15, 2)
+  taxAmount          Decimal   @default(0) @map("tax_amount") @db.Decimal(15, 2)
+  exemptAmount       Decimal?  @default(0) @map("exempt_amount") @db.Decimal(15, 2)
+  totalAmount        Decimal   @map("total_amount") @db.Decimal(15, 2)
+  unitOfMeasure      String?   @default("UNIDAD") @map("unit_of_measure") @db.VarChar(20)
+  taxClassification  String?   @default("taxable") @map("tax_classification") @db.VarChar(20)
+  createdAt          DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+  document           Document  @relation(fields: [documentId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  product            Product?  @relation(fields: [productId], references: [id], onUpdate: NoAction)
+
+  @@unique([documentId, lineNumber])
+  @@index([documentId], map: "idx_document_items_document")
+  @@index([productId], map: "idx_document_items_product")
+  @@map("document_items")
+}

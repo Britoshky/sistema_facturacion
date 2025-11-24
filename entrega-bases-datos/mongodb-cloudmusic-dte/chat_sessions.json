@@ -1,0 +1,165 @@
+[
+  {
+    "_id": "chat_676354789100000000000001",
+    "session_id": "session_2025_11_19_001",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_start": "2025-11-19T09:15:00.000Z",
+    "session_end": null,
+    "is_active": true,
+    "messages": [
+      {
+        "message_id": "msg_001",
+        "timestamp": "2025-11-19T09:15:00.000Z",
+        "role": "user",
+        "content": "¿Cómo puedo crear una factura electrónica?",
+        "metadata": {
+          "ip_address": "192.168.1.100",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+      },
+      {
+        "message_id": "msg_002",
+        "timestamp": "2025-11-19T09:15:05.000Z",
+        "role": "assistant",
+        "content": "Para crear una factura electrónica en CloudMusic DTE, sigue estos pasos:\n\n1. Ve al menú 'Documentos' → 'Nueva Factura'\n2. Selecciona el cliente o créalo si es nuevo\n3. Agrega los productos o servicios\n4. Verifica los cálculos de IVA automáticos\n5. Presiona 'Generar DTE' para crear el XML\n6. Firma digitalmente con tu certificado\n7. Envía al SII automáticamente\n\n¿En qué paso específico necesitas ayuda?",
+        "ai_model": "ollama-llama3.2-3b",
+        "processing_time_ms": 2300,
+        "confidence": 0.95,
+        "context_used": ["dte_creation", "sii_integration", "tax_calculations"]
+      },
+      {
+        "message_id": "msg_003",
+        "timestamp": "2025-11-19T09:16:20.000Z",
+        "role": "user",
+        "content": "¿Qué certificado digital necesito?",
+        "metadata": {
+          "ip_address": "192.168.1.100",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+      },
+      {
+        "message_id": "msg_004",
+        "timestamp": "2025-11-19T09:16:28.000Z",
+        "role": "assistant",
+        "content": "Necesitas un certificado digital autorizado por el SII. Las opciones son:\n\n**Entidades Certificadoras Autorizadas:**\n- E-Sign (más común para empresas)\n- Accept\n- CertiSign Chile\n\n**Tipo de certificado requerido:**\n- Certificado de Persona Jurídica (.p12/.pfx)\n- Debe incluir el RUT de tu empresa\n- Vigencia mínima 1 año\n\n**Para obtenerlo:**\n1. Contacta una entidad certificadora\n2. Presenta documentación legal de la empresa\n3. Paga el certificado (aprox. $50.000-$150.000 CLP/año)\n4. Descarga el archivo .p12 y guarda la contraseña\n\nEn CloudMusic DTE puedes subir tu certificado en 'Configuración' → 'Certificados Digitales'.",
+        "ai_model": "ollama-llama3.2-3b",
+        "processing_time_ms": 1850,
+        "confidence": 0.98,
+        "context_used": ["certificates", "sii_requirements", "legal_compliance"]
+      }
+    ],
+    "session_metadata": {
+      "total_messages": 4,
+      "total_tokens_used": 450,
+      "average_response_time_ms": 2075,
+      "topics_discussed": ["factura_electronica", "certificados_digitales", "sii_integration"],
+      "user_satisfaction": null,
+      "session_language": "es-CL"
+    },
+    "created_at": "2025-11-19T09:15:00.000Z",
+    "updated_at": "2025-11-19T09:16:28.000Z"
+  },
+  {
+    "_id": "chat_676354789100000000000002",
+    "session_id": "session_2025_11_19_002",
+    "user_id": "550e8400-e29b-41d4-a716-446655440002",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_start": "2025-11-19T11:30:00.000Z",
+    "session_end": "2025-11-19T11:45:00.000Z",
+    "is_active": false,
+    "messages": [
+      {
+        "message_id": "msg_101",
+        "timestamp": "2025-11-19T11:30:00.000Z",
+        "role": "user",
+        "content": "Mi factura fue rechazada por el SII, ¿qué hago?",
+        "metadata": {
+          "ip_address": "192.168.1.105",
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+      },
+      {
+        "message_id": "msg_102",
+        "timestamp": "2025-11-19T11:30:08.000Z",
+        "role": "assistant",
+        "content": "No te preocupes, es común recibir rechazos iniciales. Revisemos los errores más frecuentes:\n\n**Pasos para resolver:**\n1. Ve a 'Documentos' → 'Estado SII' → busca tu factura\n2. Revisa el código de error específico\n3. Corrige según el tipo de error:\n\n**Errores comunes:**\n- **Error RUT:** Verifica RUT del receptor\n- **Error Folio:** Confirma que el folio esté disponible\n- **Error Firma:** Revisa que tu certificado esté vigente\n- **Error Montos:** Verifica cálculos IVA y totales\n\n¿Podrías decirme qué código de error específico aparece?",
+        "ai_model": "ollama-llama3.2-3b",
+        "processing_time_ms": 1920,
+        "confidence": 0.92,
+        "context_used": ["error_handling", "sii_responses", "troubleshooting"]
+      },
+      {
+        "message_id": "msg_103",
+        "timestamp": "2025-11-19T11:32:15.000Z",
+        "role": "user",
+        "content": "Error código 2: Schema no válido",
+        "metadata": {
+          "ip_address": "192.168.1.105",
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+      },
+      {
+        "message_id": "msg_104",
+        "timestamp": "2025-11-19T11:32:22.000Z",
+        "role": "assistant",
+        "content": "**Error Código 2 - Schema no válido** indica problema en la estructura XML del DTE.\n\n**Solución paso a paso:**\n1. Ve al documento rechazado\n2. Click en 'Regenerar DTE'\n3. El sistema corregirá automáticamente el schema\n4. Vuelve a enviar al SII\n\n**Este error suele ocurrir por:**\n- Caracteres especiales en descripciones\n- Campos requeridos vacíos\n- Formato de fecha incorrecto\n\nCloudMusic DTE tiene validación automática que previene estos errores en nuevos documentos. ¿Ya intentaste regenerar el DTE?",
+        "ai_model": "ollama-llama3.2-3b",
+        "processing_time_ms": 2100,
+        "confidence": 0.97,
+        "context_used": ["schema_validation", "xml_structure", "error_codes"]
+      }
+    ],
+    "session_metadata": {
+      "total_messages": 4,
+      "total_tokens_used": 380,
+      "average_response_time_ms": 2010,
+      "topics_discussed": ["errores_sii", "schema_xml", "troubleshooting"],
+      "user_satisfaction": 4,
+      "session_language": "es-CL"
+    },
+    "created_at": "2025-11-19T11:30:00.000Z",
+    "updated_at": "2025-11-19T11:45:00.000Z"
+  },
+  {
+    "_id": "chat_676354789100000000000003",
+    "session_id": "session_2025_11_19_003",
+    "user_id": "550e8400-e29b-41d4-a716-446655440003",
+    "company_id": "660e8400-e29b-41d4-a716-446655440002",
+    "session_start": "2025-11-19T15:00:00.000Z",
+    "session_end": null,
+    "is_active": true,
+    "messages": [
+      {
+        "message_id": "msg_201",
+        "timestamp": "2025-11-19T15:00:00.000Z",
+        "role": "user",
+        "content": "¿Cómo configuro los folios CAF?",
+        "metadata": {
+          "ip_address": "192.168.1.110",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Edge/119.0.0.0"
+        }
+      },
+      {
+        "message_id": "msg_202",
+        "timestamp": "2025-11-19T15:00:10.000Z",
+        "role": "assistant",
+        "content": "Los folios CAF son fundamentales para la facturación electrónica. Te explico el proceso:\n\n**¿Qué son los folios CAF?**\n- Códigos de Autorización de Folios del SII\n- Rangos numericos para cada tipo de documento\n- Son obligatorios para emitir DTE válidos\n\n**Configuración en CloudMusic DTE:**\n1. Ve a 'Configuración' → 'Folios CAF'\n2. Click 'Subir Nuevo CAF'\n3. Selecciona el archivo .xml descargado del SII\n4. El sistema importará automáticamente el rango\n5. Verifica que aparezca 'Activo' en el estado\n\n**Para obtener folios del SII:**\n- Ingresa al portal SII con tu clave única\n- Ve a 'Facturación Electrónica' → 'Folios'\n- Solicita el rango que necesites\n- Descarga el archivo CAF (.xml)\n\n¿Ya tienes folios del SII o necesitas ayuda para solicitarlos?",
+        "ai_model": "ollama-llama3.2-3b",
+        "processing_time_ms": 2800,
+        "confidence": 0.96,
+        "context_used": ["caf_folios", "sii_configuration", "document_numbering"]
+      }
+    ],
+    "session_metadata": {
+      "total_messages": 2,
+      "total_tokens_used": 280,
+      "average_response_time_ms": 2800,
+      "topics_discussed": ["folios_caf", "configuracion_sii"],
+      "user_satisfaction": null,
+      "session_language": "es-CL"
+    },
+    "created_at": "2025-11-19T15:00:00.000Z",
+    "updated_at": "2025-11-19T15:00:10.000Z"
+  }
+]

@@ -1,0 +1,40 @@
+# CloudMusic DTE AI Backend Requirements
+# Versiones específicas según informe.md Capítulo V
+
+# Core Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.4.0
+
+# WebSockets & Real-time Communication  
+python-socketio==5.10.0
+websockets==12.0
+
+# Database & Caching
+redis==5.0.1
+pymongo==4.6.0
+motor==3.3.2
+asyncpg==0.29.0
+
+# AI & Machine Learning
+ollama==0.1.7
+transformers==4.35.0
+torch>=2.0.0
+numpy>=1.24.0
+scikit-learn==1.3.2
+
+# HTTP Client & Utilities
+httpx==0.25.2
+python-multipart==0.0.6
+python-dotenv==1.0.0
+
+# Logging & Monitoring
+loguru==0.7.2
+
+# Development & Testing
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+black>=23.11.0
+isort>=5.12.0
+flake8>=6.1.0
+mypy>=1.7.1

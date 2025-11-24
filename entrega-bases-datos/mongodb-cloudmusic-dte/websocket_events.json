@@ -1,0 +1,194 @@
+[
+  {
+    "_id": "ws_676354789100000000000001",
+    "event_id": "evt_2025_11_19_001",
+    "event_type": "user_login",
+    "timestamp": "2025-11-19T08:30:00.000Z",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_id": "ws_session_001",
+    "connection_id": "conn_192_168_1_100_8030",
+    "data": {
+      "username": "admin@cloudmusic.cl",
+      "login_method": "email_password",
+      "ip_address": "192.168.1.100",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "login_success": true,
+      "two_factor_used": false
+    },
+    "metadata": {
+      "client_info": {
+        "browser": "Chrome",
+        "version": "119.0.0.0",
+        "os": "Windows 10",
+        "device_type": "desktop"
+      },
+      "geolocation": {
+        "country": "Chile",
+        "region": "Metropolitana",
+        "city": "Santiago"
+      }
+    },
+    "broadcast_to": ["admin_panel", "security_monitor"],
+    "processed": true,
+    "created_at": "2025-11-19T08:30:00.000Z"
+  },
+  {
+    "_id": "ws_676354789100000000000002",
+    "event_id": "evt_2025_11_19_002",
+    "event_type": "document_created",
+    "timestamp": "2025-11-19T10:30:00.000Z",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_id": "ws_session_001",
+    "connection_id": "conn_192_168_1_100_8030",
+    "data": {
+      "document_id": "bb0e8400-e29b-41d4-a716-446655440001",
+      "document_type": 33,
+      "folio_number": 1,
+      "client_rut": "19001626-9",
+      "total_amount": 2500000.00,
+      "status": "draft",
+      "action": "create_invoice"
+    },
+    "metadata": {
+      "processing_time_ms": 1200,
+      "validation_passed": true,
+      "folio_consumed": true,
+      "auto_save": true
+    },
+    "broadcast_to": ["documents_dashboard", "real_time_stats"],
+    "processed": true,
+    "created_at": "2025-11-19T10:30:00.000Z"
+  },
+  {
+    "_id": "ws_676354789100000000000003",
+    "event_id": "evt_2025_11_19_003",
+    "event_type": "document_signed",
+    "timestamp": "2025-11-19T10:32:15.000Z",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_id": "ws_session_001",
+    "connection_id": "conn_192_168_1_100_8030",
+    "data": {
+      "document_id": "bb0e8400-e29b-41d4-a716-446655440001",
+      "certificate_used": "990e8400-e29b-41d4-a716-446655440001",
+      "signature_algorithm": "SHA256withRSA",
+      "xml_signed": true,
+      "pdf_generated": true,
+      "qr_code_embedded": true
+    },
+    "metadata": {
+      "signature_time_ms": 3400,
+      "xml_size_bytes": 15420,
+      "pdf_size_bytes": 89650,
+      "certificate_validity_days": 245
+    },
+    "broadcast_to": ["documents_dashboard", "signature_monitor"],
+    "processed": true,
+    "created_at": "2025-11-19T10:32:15.000Z"
+  },
+  {
+    "_id": "ws_676354789100000000000004",
+    "event_id": "evt_2025_11_19_004",
+    "event_type": "sii_submission",
+    "timestamp": "2025-11-19T10:33:00.000Z",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_id": "ws_session_001",
+    "connection_id": "conn_192_168_1_100_8030",
+    "data": {
+      "document_id": "bb0e8400-e29b-41d4-a716-446655440001",
+      "track_id": "TRK-2025-001-CloudMusic",
+      "sii_environment": "certificacion",
+      "submission_method": "web_service",
+      "batch_id": "batch_2025_11_19_001"
+    },
+    "metadata": {
+      "submission_time_ms": 5200,
+      "retry_count": 0,
+      "soap_envelope_size": 18950,
+      "sii_response_time_ms": 4800
+    },
+    "broadcast_to": ["sii_monitor", "documents_dashboard"],
+    "processed": true,
+    "created_at": "2025-11-19T10:33:00.000Z"
+  },
+  {
+    "_id": "ws_676354789100000000000005",
+    "event_id": "evt_2025_11_19_005",
+    "event_type": "ai_analysis_completed",
+    "timestamp": "2025-11-19T10:35:30.000Z",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_id": "ws_session_001",
+    "connection_id": "conn_192_168_1_100_8030",
+    "data": {
+      "document_id": "bb0e8400-e29b-41d4-a716-446655440001",
+      "analysis_id": "ai_676354789100000000000001",
+      "ai_model": "ollama-llama3.2-3b",
+      "analysis_type": "tax_compliance_check",
+      "compliance_score": 95,
+      "risk_level": "low"
+    },
+    "metadata": {
+      "processing_time_ms": 2450,
+      "confidence_level": 0.96,
+      "tokens_processed": 1250,
+      "memory_usage_mb": 340
+    },
+    "broadcast_to": ["ai_dashboard", "compliance_monitor"],
+    "processed": true,
+    "created_at": "2025-11-19T10:35:30.000Z"
+  },
+  {
+    "_id": "ws_676354789100000000000006",
+    "event_id": "evt_2025_11_19_006",
+    "event_type": "user_logout",
+    "timestamp": "2025-11-19T18:45:00.000Z",
+    "user_id": "550e8400-e29b-41d4-a716-446655440001",
+    "company_id": "660e8400-e29b-41d4-a716-446655440001",
+    "session_id": "ws_session_001",
+    "connection_id": "conn_192_168_1_100_8030",
+    "data": {
+      "logout_method": "manual",
+      "session_duration_minutes": 615,
+      "documents_created": 3,
+      "ai_queries": 5,
+      "last_activity": "2025-11-19T18:44:30.000Z"
+    },
+    "metadata": {
+      "clean_logout": true,
+      "data_saved": true,
+      "temporary_files_cleaned": true
+    },
+    "broadcast_to": ["admin_panel", "session_monitor"],
+    "processed": true,
+    "created_at": "2025-11-19T18:45:00.000Z"
+  },
+  {
+    "_id": "ws_676354789100000000000007",
+    "event_id": "evt_2025_11_19_007",
+    "event_type": "system_notification",
+    "timestamp": "2025-11-19T12:00:00.000Z",
+    "user_id": null,
+    "company_id": null,
+    "session_id": "system_broadcast",
+    "connection_id": "system_internal",
+    "data": {
+      "notification_type": "certificate_expiry_warning",
+      "message": "Certificado digital de CloudMusic SpA expira en 30 días",
+      "urgency_level": "medium",
+      "action_required": true,
+      "deadline": "2025-12-19T23:59:59.000Z"
+    },
+    "metadata": {
+      "affected_companies": ["660e8400-e29b-41d4-a716-446655440001"],
+      "automatic_reminder": true,
+      "escalation_level": 1
+    },
+    "broadcast_to": ["all_active_sessions", "admin_notifications"],
+    "processed": true,
+    "created_at": "2025-11-19T12:00:00.000Z"
+  }
+]

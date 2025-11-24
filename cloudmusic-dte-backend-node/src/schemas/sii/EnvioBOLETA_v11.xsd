@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+  Esquema XSD simplificado para Envío de Boletas v1.1 - SII Chile
+  Tipos de documentos: 39 (Boleta Electrónica), 41 (Boleta Exenta)
+  
+  IMPORTANTE: En producción, descargar esquemas oficiales desde:
+  https://www.sii.cl/factura_electronica/factura_mercado/esquemas.htm
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://www.sii.cl/SiiDte" 
+           xmlns="http://www.sii.cl/SiiDte"
+           elementFormDefault="qualified">
+
+  <!-- Elemento raíz EnvioBOLETA -->
+  <xs:element name="EnvioBOLETA">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SetDTE" type="SetDTEBoletaType"/>
+        <xs:element name="Signature" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Tipo SetDTE para Boletas -->
+  <xs:complexType name="SetDTEBoletaType">
+    <xs:sequence>
+      <xs:element name="Caratula" type="CaratulaBoletaType"/>
+      <xs:element name="DTE" type="DTEBoletaType" maxOccurs="unbounded"/>
+      <xs:element name="SubTotDTE" type="SubTotDTEType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Tipo Caratula para Boletas -->
+  <xs:complexType name="CaratulaBoletaType">
+    <xs:sequence>
+      <xs:element name="RutEmisor" type="RUTType"/>
+      <xs:element name="RutEnvia" type="RUTType"/>
+      <xs:element name="RutReceptor" type="RUTType"/>
+      <xs:element name="FchResol" type="xs:date"/>
+      <xs:element name="NroResol" type="xs:long"/>
+      <xs:element name="TmstFirmaEnv" type="xs:dateTime"/>
+      <xs:element name="SubTotDTE" type="SubTotDTEType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Tipo DTE para Boletas -->
+  <xs:complexType name="DTEBoletaType">
+    <xs:sequence>
+      <xs:element name="Documento" type="DocumentoBoletaType"/>
+      <xs:element name="Signature" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Tipo Documento para Boletas -->
+  <xs:complexType name="DocumentoBoletaType">
+    <xs:sequence>
+      <xs:element name="Encabezado" type="EncabezadoBoletaType"/>
+      <xs:element name="Detalle" type="DetalleBoletaType" maxOccurs="unbounded"/>
+      <xs:element name="TED" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Tipo Encabezado para Boletas -->
+  <xs:complexType name="EncabezadoBoletaType">
+    <xs:sequence>
+      <xs:element name="IdDoc" type="IdDocBoletaType"/>
+      <xs:element name="Emisor" type="EmisorBoletaType"/>
+      <xs:element name="Totales" type="TotalesBoletaType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo IdDoc para Boletas -->
+  <xs:complexType name="IdDocBoletaType">
+    <xs:sequence>
+      <xs:element name="TipoDTE">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="39"/> <!-- Boleta Electrónica -->
+            <xs:enumeration value="41"/> <!-- Boleta Exenta Electrónica -->
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Folio" type="xs:long"/>
+      <xs:element name="FchEmis" type="xs:date"/>
+      <xs:element name="IndServicio" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Emisor para Boletas -->
+  <xs:complexType name="EmisorBoletaType">
+    <xs:sequence>
+      <xs:element name="RUTEmisor" type="RUTType"/>
+      <xs:element name="RznSocEmisor" type="xs:string"/>
+      <xs:element name="GiroEmisor" type="xs:string"/>
+      <xs:element name="CdgSIISucur" type="xs:int" minOccurs="0"/>
+      <xs:element name="DirOrigen" type="xs:string"/>
+      <xs:element name="CmnaOrigen" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Totales para Boletas -->
+  <xs:complexType name="TotalesBoletaType">
+    <xs:sequence>
+      <xs:element name="MntNeto" type="xs:long" minOccurs="0"/>
+      <xs:element name="MntExe" type="xs:long" minOccurs="0"/>
+      <xs:element name="MntTotal" type="xs:long"/>
+      <xs:element name="IVA" type="xs:long" minOccurs="0"/>
+      <xs:element name="MontoNF" type="xs:long" minOccurs="0"/>
+      <xs:element name="TotalesServicio" type="TotalesServicioType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo TotalesServicio -->
+  <xs:complexType name="TotalesServicioType">
+    <xs:sequence>
+      <xs:element name="TpoServ" type="xs:int"/>
+      <xs:element name="PeriodoDesde" type="xs:date" minOccurs="0"/>
+      <xs:element name="PeriodoHasta" type="xs:date" minOccurs="0"/>
+      <xs:element name="MntServ" type="xs:long"/>
+      <xs:element name="MntNeto" type="xs:long" minOccurs="0"/>
+      <xs:element name="TasaIVA" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="IVA" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Detalle para Boletas -->
+  <xs:complexType name="DetalleBoletaType">
+    <xs:sequence>
+      <xs:element name="NroLinDet" type="xs:int"/>
+      <xs:element name="CdgItem" type="xs:string" minOccurs="0"/>
+      <xs:element name="NmbItem" type="xs:string"/>
+      <xs:element name="QtyItem" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="UnmdItem" type="xs:string" minOccurs="0"/>
+      <xs:element name="PrcItem" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="MontoItem" type="xs:long"/>
+      <xs:element name="IndExe" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo SubTotDTE -->
+  <xs:complexType name="SubTotDTEType">
+    <xs:sequence>
+      <xs:element name="TipoDTE" type="xs:int"/>
+      <xs:element name="NroDTE" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo RUT -->
+  <xs:simpleType name="RUTType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{1,8}-[0-9Kk]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

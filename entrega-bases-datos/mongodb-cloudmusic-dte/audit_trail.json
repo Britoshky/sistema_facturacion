@@ -1,0 +1,241 @@
+[
+  {
+    "_id": "675e8400e29b41d4a716446655440060",
+    "timestamp": "2025-11-15T14:30:15.123Z",
+    "nivel": "INFO",
+    "modulo": "DTE_EMISSION",
+    "accion": "CREAR_DOCUMENTO",
+    "usuarioId": "675e8400e29b41d4a716446655440010",
+    "empresaId": "676354789100000000000001",
+    "documentoId": "675e8400e29b41d4a716446655440050",
+    "tipoDocumento": 33,
+    "folio": 1,
+    "mensaje": "Factura electrónica creada exitosamente",
+    "detalles": {
+      "rutReceptor": "76.123.456-7",
+      "montoTotal": 2500000,
+      "tiempoGeneracion": 245,
+      "validacionesOk": true
+    },
+    "ipAddress": "192.168.1.100",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440061",
+    "timestamp": "2025-11-15T14:35:02.456Z",
+    "nivel": "INFO",
+    "modulo": "SII_INTEGRATION",
+    "accion": "ENVIO_DTE",
+    "usuarioId": "675e8400e29b41d4a716446655440010",
+    "empresaId": "676354789100000000000001",
+    "documentoId": "675e8400e29b41d4a716446655440050",
+    "tipoDocumento": 33,
+    "folio": 1,
+    "mensaje": "Documento enviado al SII correctamente",
+    "detalles": {
+      "trackId": "TRK-2025-001-CloudMusic",
+      "tiempoEnvio": 2500,
+      "intentoNumero": 1,
+      "estadoSII": "RECIBIDO"
+    },
+    "ipAddress": "192.168.1.100",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440062",
+    "timestamp": "2025-11-15T16:30:45.789Z",
+    "nivel": "INFO",
+    "modulo": "SII_INTEGRATION",
+    "accion": "RESPUESTA_SII",
+    "usuarioId": null,
+    "empresaId": "676354789100000000000001",
+    "documentoId": "675e8400e29b41d4a716446655440050",
+    "tipoDocumento": 33,
+    "folio": 1,
+    "mensaje": "Respuesta del SII recibida - Documento aceptado",
+    "detalles": {
+      "trackId": "TRK-2025-001-CloudMusic",
+      "codigoSII": "0",
+      "estadoSII": "ACEPTADO",
+      "tiempoRespuesta": 7200000,
+      "notificacionEmail": true
+    },
+    "ipAddress": "201.214.123.45",
+    "userAgent": "SII-WebService/1.0"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440063",
+    "timestamp": "2025-11-15T09:15:30.123Z",
+    "nivel": "INFO",
+    "modulo": "AUTHENTICATION",
+    "accion": "LOGIN",
+    "usuarioId": "675e8400e29b41d4a716446655440010",
+    "empresaId": "676354789100000000000001",
+    "documentoId": null,
+    "tipoDocumento": null,
+    "folio": null,
+    "mensaje": "Usuario autenticado correctamente",
+    "detalles": {
+      "rol": "admin",
+      "sessionId": "sess_2025-11-15_admin_001",
+      "tipoAuth": "password",
+      "dispositivoNuevo": false
+    },
+    "ipAddress": "192.168.1.100",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440064",
+    "timestamp": "2025-11-16T08:45:12.567Z",
+    "nivel": "WARNING",
+    "modulo": "FOLIOS_CAF",
+    "accion": "FOLIO_LIMITE",
+    "usuarioId": "675e8400e29b41d4a716446655440010",
+    "empresaId": "676354789100000000000001",
+    "documentoId": null,
+    "tipoDocumento": 33,
+    "folio": null,
+    "mensaje": "Quedan menos de 5 folios disponibles para Factura Electrónica",
+    "detalles": {
+      "foliosRestantes": 3,
+      "rangoCAF": "1-20",
+      "fechaVencimientoCAF": "2025-12-31",
+      "alertaEnviada": true
+    },
+    "ipAddress": "192.168.1.100",
+    "userAgent": "Sistema Interno - Cron Job"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440065",
+    "timestamp": "2025-11-17T11:20:33.890Z",
+    "nivel": "ERROR",
+    "modulo": "SII_INTEGRATION",
+    "accion": "ERROR_TEMPORAL",
+    "usuarioId": "675e8400e29b41d4a716446655440011",
+    "empresaId": "676354789100000000000001",
+    "documentoId": null,
+    "tipoDocumento": null,
+    "folio": null,
+    "mensaje": "Error temporal en comunicación con SII - Reintentando automáticamente",
+    "detalles": {
+      "codigoError": "TIMEOUT",
+      "descripcionError": "Timeout en conexión SSL",
+      "reintentoEn": 300,
+      "intentoNumero": 2,
+      "maxIntentos": 5
+    },
+    "ipAddress": "192.168.1.200",
+    "userAgent": "Sistema Interno - SII Client"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440066",
+    "timestamp": "2025-11-16T15:22:45.234Z",
+    "nivel": "INFO",
+    "modulo": "CLIENTE_MANAGEMENT",
+    "accion": "CREAR_CLIENTE",
+    "usuarioId": "675e8400e29b41d4a716446655440011",
+    "empresaId": "676354789100000000000001",
+    "documentoId": null,
+    "tipoDocumento": null,
+    "folio": null,
+    "mensaje": "Nuevo cliente registrado en el sistema",
+    "detalles": {
+      "clienteId": "675e8400e29b41d4a716446655440037",
+      "rutCliente": "88.777.666-5",
+      "nombreCliente": "Nuevo Cliente Test",
+      "tipoCliente": "empresa",
+      "validacionRUT": true
+    },
+    "ipAddress": "192.168.1.200",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440067",
+    "timestamp": "2025-11-10T13:45:22.678Z",
+    "nivel": "INFO",
+    "modulo": "DTE_EMISSION",
+    "accion": "CREAR_DOCUMENTO",
+    "usuarioId": "675e8400e29b41d4a716446655440011",
+    "empresaId": "696789123400000000000002",
+    "documentoId": "675e8400e29b41d4a716446655440055",
+    "tipoDocumento": 33,
+    "folio": 1,
+    "mensaje": "Factura electrónica de alto monto creada correctamente",
+    "detalles": {
+      "rutReceptor": "79.456.123-8",
+      "montoTotal": 8500000,
+      "tiempoGeneracion": 512,
+      "validacionesOk": true,
+      "requiereAprobacion": true
+    },
+    "ipAddress": "192.168.1.200",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440068",
+    "timestamp": "2025-11-05T14:10:33.123Z",
+    "nivel": "INFO",
+    "modulo": "AI_INTEGRATION",
+    "accion": "CONSULTA_IA",
+    "usuarioId": "675e8400e29b41d4a716446655440012",
+    "empresaId": "687456321900000000000003",
+    "documentoId": null,
+    "tipoDocumento": null,
+    "folio": null,
+    "mensaje": "Consulta procesada por asistente de IA",
+    "detalles": {
+      "tipoConsulta": "interpretacion_normativa",
+      "pregunta": "¿Cómo debo facturar servicios de marketing digital?",
+      "tiempoRespuesta": 1200,
+      "confianza": 0.95,
+      "fuentes": ["SII Resolución 80", "Ley 19.983"]
+    },
+    "ipAddress": "192.168.1.300",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440069",
+    "timestamp": "2025-11-17T18:30:15.456Z",
+    "nivel": "INFO",
+    "modulo": "BACKUP_SYSTEM",
+    "accion": "BACKUP_COMPLETO",
+    "usuarioId": null,
+    "empresaId": null,
+    "documentoId": null,
+    "tipoDocumento": null,
+    "folio": null,
+    "mensaje": "Backup automático completado exitosamente",
+    "detalles": {
+      "tipoBackup": "completo",
+      "documentosRespaldados": 347,
+      "tamanoArchivo": "156MB",
+      "destino": "AWS S3",
+      "tiempoEjecucion": 4500,
+      "checksum": "a1b2c3d4e5f67890"
+    },
+    "ipAddress": "10.0.0.1",
+    "userAgent": "Sistema Interno - Backup Service"
+  },
+  {
+    "_id": "675e8400e29b41d4a716446655440070",
+    "timestamp": "2025-11-17T23:59:59.999Z",
+    "nivel": "INFO",
+    "modulo": "SYSTEM_MAINTENANCE",
+    "accion": "LIMPIEZA_LOGS",
+    "usuarioId": null,
+    "empresaId": null,
+    "documentoId": null,
+    "tipoDocumento": null,
+    "folio": null,
+    "mensaje": "Limpieza automática de logs completada",
+    "detalles": {
+      "logsEliminados": 1247,
+      "fechaLimite": "2024-11-17",
+      "espacioLiberado": "23MB",
+      "tipoLimpieza": "automatica",
+      "tiempoEjecucion": 890
+    },
+    "ipAddress": "10.0.0.1",
+    "userAgent": "Sistema Interno - Cleanup Service"
+  }
+]
