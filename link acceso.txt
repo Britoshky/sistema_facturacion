@@ -1,0 +1,8 @@
+LINK: https://dte.cloudmusic.cl
+
+CREDENCIALES DE ACCESO:
+superadmin@cloudmusic.cl → superadmin123
+admin@cloudmusic.cl → admin123  
+contador@cloudmusic.cl → contador123
+user@cloudmusic.cl → user123
+viewer@empresa2.cl → viewer123
